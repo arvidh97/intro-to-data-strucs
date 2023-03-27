@@ -60,4 +60,34 @@ class PolyTreeNode
         raise "not your child"
      end
     end
+
+    def dfs(target_value)
+        return self if self.value == target_value
+
+        self.children.each do |ele|
+            result = ele.dfs(target_value)
+            if result != nil  
+                return result 
+            end
+        end
+
+        return nil 
+    end
+    
+    def bfs(target_value)
+        array = [self]
+
+        while array.empty? == false 
+            x = array.shift
+            if x.value == target_value
+                return x
+            else
+                array += x.children
+            end
+        end
+
+        return nil
+
+    end
+
 end
